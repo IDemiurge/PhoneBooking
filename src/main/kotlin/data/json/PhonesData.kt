@@ -1,5 +1,5 @@
 package data.json
 
-import data.Data.*
+import data.PhoneModel
 
 data class PhonesData(val models: List<PhoneModel>)

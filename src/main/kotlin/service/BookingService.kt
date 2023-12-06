@@ -2,6 +2,7 @@ package service
 
 import data.Data
 import data.Data.*
+import data.PhoneModel
 import data.json.JsonWriter
 import java.time.Instant
 
@@ -15,7 +16,7 @@ class BookingService(val userName: String) {
     fun booked(model: PhoneModel) {
             println(model.modelName)
             val now = Instant.now()
-            val status = PhoneStatus(BookEvent(now, userName))
+            val status = PhoneStatusData(BookEvent(now, userName))
             Data.statusData.statusMap[model.modelName] = status
             JsonWriter.write(Data.statusData)
         }

@@ -4,6 +4,7 @@ import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.google.gson.reflect.TypeToken
 import data.Data
+import data.PhoneModel
 import java.io.File
 import java.time.Instant
 
@@ -17,8 +18,8 @@ class  JsonReader {
             val resourceAsStream = JsonReader::class.java.classLoader.getResourceAsStream("json/phones_data.json")
             if (resourceAsStream != null) {
                 val content: String = resourceAsStream.bufferedReader().use { it.readText() }
-                val listType = object : TypeToken<List<Data.PhoneModel>>() {}.type
-                val data: List<Data.PhoneModel> = gson.fromJson(content, listType)
+                val listType = object : TypeToken<List<PhoneModel>>() {}.type
+                val data: List<PhoneModel> = gson.fromJson(content, listType)
                 return PhonesData(data)
             } else {
                 println("Resource not found")

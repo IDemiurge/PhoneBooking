@@ -1,0 +1,56 @@
+[
+    {
+      "modelName": "Samsung Galaxy S9",
+      "bands2g": ["GSM 850", "GSM 900", "GSM 1800", "GSM 1900"],
+      "bands3g": ["HSDPA 850", "HSDPA 900", "HSDPA 1700(AWS)", "HSDPA 1900", "HSDPA 2100"],
+      "bands4g": ["LTE"]
+    },
+    {
+      "modelName": "Samsung Galaxy S8",
+      "bands2g": ["GSM 850", "GSM 900", "GSM 1800", "GSM 1900"],
+      "bands3g": ["HSDPA 850", "HSDPA 900", "HSDPA 1700(AWS)", "HSDPA 1900", "HSDPA 2100"],
+      "bands4g": ["LTE"]
+    },
+    {
+      "modelName": "Motorola Nexus 6",
+      "bands2g": ["GSM 850", "GSM 900", "GSM 1800", "GSM 1900"],
+      "bands3g": ["HSDPA 800", "HSDPA 850", "HSDPA 900", "HSDPA 1700(AWS)", "HSDPA 1800", "HSDPA 1900", "HSDPA 2100"],
+      "bands4g": ["LTE"]
+    },
+    {
+      "modelName": "Oneplus 9",
+      "bands2g": ["GSM 850", "GSM 900", "GSM 1800", "GSM 1900"],
+      "bands3g": ["HSDPA 800", "HSDPA 850", "HSDPA 900", "HSDPA 1700(AWS)", "HSDPA 1800", "HSDPA 1900", "HSDPA 2100"],
+      "bands4g": ["LTE"]
+    },
+    {
+      "modelName": "Apple iPhone 13",
+      "bands2g": ["GSM 850", "GSM 900", "GSM 1800", "GSM 1900"],
+      "bands3g": ["HSDPA 850", "HSDPA 900", "HSDPA 1700(AWS)", "HSDPA 1900", "HSDPA 2100"],
+      "bands4g": ["LTE"]
+    },
+    {
+      "modelName": "Apple iPhone 12",
+      "bands2g": ["GSM 850", "GSM 900", "GSM 1800", "GSM 1900"],
+      "bands3g": ["HSDPA 850", "HSDPA 900", "HSDPA 1700(AWS)", "HSDPA 1900", "HSDPA 2100"],
+      "bands4g": ["LTE"]
+    },
+    {
+      "modelName": "Apple iPhone 11",
+      "bands2g": ["GSM 850", "GSM 900", "GSM 1800", "GSM 1900"],
+      "bands3g": ["HSDPA 850", "HSDPA 900", "HSDPA 1700(AWS)", "HSDPA 1900", "HSDPA 2100"],
+      "bands4g": ["LTE"]
+    },
+    {
+      "modelName": "iPhone X",
+      "bands2g": ["GSM 850", "GSM 900", "GSM 1800", "GSM 1900"],
+      "bands3g": ["HSDPA 850", "HSDPA 900", "HSDPA 1700(AWS)", "HSDPA 1900", "HSDPA 2100"],
+      "bands4g": ["LTE"]
+    },
+    {
+      "modelName": "Nokia 3310",
+      "bands2g": ["GSM 900", "GSM 1800"],
+      "bands3g": ["Not applicable"],
+      "bands4g": ["Not applicable"]
+    }
+  ]

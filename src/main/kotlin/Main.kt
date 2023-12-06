@@ -44,7 +44,7 @@ class Main {
     private suspend fun createAndShowGUI() {
         val frame = JFrame("Phone Booking App").apply {
             defaultCloseOperation = JFrame.EXIT_ON_CLOSE
-            setSize(300, 700)
+            setSize(300, 500)
         }
 
         updateDefer.await()

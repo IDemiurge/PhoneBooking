@@ -1,9 +1,11 @@
 package ui
 
 import app.AppManager
-import data.json.model.StatusData.BookingStatus.*
 import data.json.model.PhoneModel
 import data.json.model.StatusData
+import data.json.model.StatusData.BookingStatus.FREE
+import java.awt.Component
+import java.awt.Dimension
 import java.util.function.Consumer
 import javax.swing.*
 
@@ -29,7 +31,10 @@ class BookingMenu(private val manager: AppManager) : JPanel() {
         button.addActionListener {
             callback.accept(model)
         }
+        button.alignmentX = Component.CENTER_ALIGNMENT
+        button.maximumSize = Dimension(200, 50)
         add(button)
+
         buttons[model.modelName] = button
     }
 

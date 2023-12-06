@@ -13,11 +13,9 @@ import javax.swing.*
 
 
 class BookingMenu(val service: BookingService, data: PhonesData) : JPanel() {
-    val buttons = mutableMapOf<String, JButton>() //linked?
+    private val buttons = mutableMapOf<String, JButton>()
 
-    //    val buttons: Map<PhoneModel, JButton> = HashMap()
     init {
-//        layout = FlowLayout()
         this.layout = BoxLayout(this, BoxLayout.Y_AXIS)
         createButtonsForPhones(data)
     }
@@ -86,7 +84,7 @@ class BookingMenu(val service: BookingService, data: PhonesData) : JPanel() {
 
     fun updateGUI(statuses: StatusData) {
         buttons.forEach {
-            setEnabled(it.value, true)
+            setEnabled(it.value, FREE) //if status for this phone button is not present in data, it is considered FREE
             val phoneStatus = statuses.statusMap[it.key]
             if (phoneStatus != null) phoneStatus.apply {
                 update(buttons[it.key], it.key, this)
@@ -98,7 +96,7 @@ class BookingMenu(val service: BookingService, data: PhonesData) : JPanel() {
     }
 
     private fun update(button: JButton?, modelName: String, value: PhoneStatus) {
-        setEnabled(button, value.status == FREE)
+        setEnabled(button, value.status)
         button?.text = getText(modelName, value.status ?: FREE)
 
         button?.toolTipText = null
@@ -107,17 +105,16 @@ class BookingMenu(val service: BookingService, data: PhonesData) : JPanel() {
         //tooltip - booked by N at X
     }
 
-    private fun setEnabled(button: JButton?, status: Boolean) {
-        if (status) {
-            button?.background = Color.white
-        } else {
-            button?.background = Color.red
+    private fun setEnabled(button: JButton?, status: BookingStatus) {
+        when (status){
+            FREE ->
+                button?.background = Color.white
+            BOOKED_BY_THIS_USER ->
+                button?.background = Color.green
+            BOOKED_BY_ANOTHER_USER ->
+                button?.background = Color.red
         }
     }
 
-//    fun buttonClicked(model: PhoneModel) {
-//        service.booked(model)
-//
-//    }
 
 }

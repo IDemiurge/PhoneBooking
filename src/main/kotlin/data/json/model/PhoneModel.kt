@@ -1,4 +1,4 @@
-package data
+package data.json.model
 
 data class PhoneModel(
     val modelName: String,

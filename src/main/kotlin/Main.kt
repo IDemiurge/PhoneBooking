@@ -1,68 +1,54 @@
-import data.Data
+import app.AppManager
+import app.AppDataManager
 import data.json.JsonHook
-import data.json.JsonReader
-import data.json.PhonesData
-import data.json.StatusData
+import data.json.model.StatusData
 import ui.BookingMenu
 import javax.swing.JFrame
 import kotlinx.coroutines.*
-import service.BookingService
-import javax.swing.JOptionPane
-import javax.swing.SwingUtilities
+import app.service.BookingService
+import app.DialogManager
+import app.BookingMenuManager
 
 class Main {
-    companion object {
-        private var lastReadStatusData: String = ""
-        val phoneDataDefer = CompletableDeferred<PhonesData>()
-        val phoneStatusDefer = CompletableDeferred<StatusData>()
-        lateinit var menu: BookingMenu
-        val userName =  JOptionPane.showInputDialog("user name?")
-        fun main() {
-//        runBlocking {
-            Thread {
-                readAndHookOnJSON()
-            }.start()
-//        }
-            runBlocking {
-                createAndShowGUI()
+
+    private val updateDefer = CompletableDeferred<StatusData>()
+    lateinit var status: StatusData
+    private val manager = AppManager()
+
+    fun main() {
+        Thread {
+            initAppManager()
+        }.start()
+        runBlocking {
+            createAndShowGUI()
+        }
+    }
+
+    private fun initAppManager() {
+        manager.apply {
+            dataManager = AppDataManager { status }
+            bookingService = BookingService(dataManager.userName, this)
+            swing = BookingMenuManager()
+            swing.component = BookingMenu(this)
+            dialog = DialogManager(swing.component, this)
+            hook = JsonHook {
+                manager.updateGUI()
             }
+        }
+        status = manager.createStatusData()
+        manager.swing.updateGUI(status)
+        updateDefer.complete(status)
+    }
+
+
+    private suspend fun createAndShowGUI() {
+        val frame = JFrame("Phone Booking App").apply {
+            defaultCloseOperation = JFrame.EXIT_ON_CLOSE
+            setSize(300, 700)
         }
 
-        private fun readAndHookOnJSON() {
-            phoneDataDefer.complete(JsonReader.readPhonesData())
-            phoneStatusDefer.complete(JsonReader.readStatusData())
-            JsonHook.initHook { s ->
-                run {
-                    val update = updateAndGetStatusData(s)
-                    if (update)
-                        SwingUtilities.invokeLater { menu.updateGUI(Data.statusData) }
-                }
-            }
-            //TODO HOOK and start running updates
-        }
-
-        private fun updateAndGetStatusData(s: String): Boolean {
-            if (!s.equals(lastReadStatusData)) {
-                var newData = JsonReader.readStatusData()
-                Data.statusData.statusMap.clear()
-                Data.statusData.statusMap.putAll(newData.statusMap)
-                println("Updated status data with: \n$s")
-                lastReadStatusData = s
-                return true
-            }
-            return false
-        }
-
-        private suspend fun createAndShowGUI() {
-            val frame = JFrame("Booking App").apply {
-                defaultCloseOperation = JFrame.EXIT_ON_CLOSE
-                setSize(300, 800)
-            }
-            menu = BookingMenu(BookingService(userName), phoneDataDefer.await())
-            frame.add(menu)
-            frame.isVisible = true
-            Data.statusData = phoneStatusDefer.await()
-            menu.updateGUI(Data.statusData)
-        }
+        updateDefer.await()
+        frame.add(manager.swing.component)
+        frame.isVisible = true
     }
 }

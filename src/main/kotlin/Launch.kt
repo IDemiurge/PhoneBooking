@@ -1,3 +1,3 @@
 fun main(){
-    Main().main()
+    Main.main()
 }

@@ -9,10 +9,10 @@ import app.service.BookingService
 import app.DialogManager
 import app.BookingMenuManager
 
-class Main {
+object Main {
 
     private val updateDefer = CompletableDeferred<StatusData>()
-    lateinit var status: StatusData
+    private lateinit var status: StatusData
     private val manager = AppManager()
 
     fun main() {

@@ -31,13 +31,13 @@ object Main {
             swing = BookingMenuManager()
             swing.component = BookingMenu(this)
             dialog = DialogManager(swing.component, this)
+            status = createStatusData()
+            swing.updateGUI(status)
+            updateDefer.complete(status)
             hook = JsonHook {
-                manager.updateGUI()
+                updateGUI()
             }
         }
-        status = manager.createStatusData()
-        manager.swing.updateGUI(status)
-        updateDefer.complete(status)
     }
 
 

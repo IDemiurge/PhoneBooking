@@ -32,7 +32,7 @@ class BookingMenu(private val manager: AppManager) : JPanel() {
             callback.accept(model)
         }
         button.alignmentX = Component.CENTER_ALIGNMENT
-        button.maximumSize = Dimension(200, 50)
+        button.maximumSize = Dimension(240, 50)
         add(button)
 
         buttons[model.modelName] = button

@@ -1,4 +1,4 @@
-package app
+package ui
 
 import data.json.model.StatusData
 import ui.BookingMenu
@@ -15,7 +15,7 @@ class BookingMenuManager {
     fun getText(modelName: String, status: StatusData.BookingStatus): String {
         return when (status) {
             StatusData.BookingStatus.FREE -> "[Free] $modelName"
-            StatusData.BookingStatus.BOOKED_BY_ANOTHER_USER -> "[Unavailable] $modelName"
+            StatusData.BookingStatus.BOOKED_BY_ANOTHER_USER -> "[Locked] $modelName"
             StatusData.BookingStatus.BOOKED_BY_THIS_USER -> "[Booked] $modelName"
         }
     }

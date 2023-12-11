@@ -3,6 +3,7 @@ package app
 import data.json.JsonHook
 import data.json.model.StatusData
 import app.service.BookingService
+import ui.BookingMenuManager
 
 class AppManager {
     lateinit var swing: BookingMenuManager

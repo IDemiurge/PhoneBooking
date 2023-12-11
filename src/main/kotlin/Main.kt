@@ -7,7 +7,7 @@ import javax.swing.JFrame
 import kotlinx.coroutines.*
 import app.service.BookingService
 import app.DialogManager
-import app.BookingMenuManager
+import ui.BookingMenuManager
 
 object Main {
 
